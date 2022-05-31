@@ -1,0 +1,76 @@
+# Docker Compose file Reference (https://docs.docker.com/compose/compose-file/)
+
+version: '3.7'
+
+# Define services
+services:
+  # App backend service
+  app-server:
+    # Configuration for building the docker image for the backend service
+    build:
+      context: ZTI # Use an image built from the specified dockerfile in the `polling-app-server` directory.
+      dockerfile: Dockerfile
+    image: patryk0504/app-server:latest
+    ports:
+      - "7777:7777" # Forward the exposed port 8080 on the container to port 8080 on the host machine
+    restart: always
+    depends_on:
+      # - db 
+      db:
+        condition: service_healthy # Wait for neo4j to be ready # This service depends on mysql. Start that first.
+    links:
+      - db
+    environment:
+      SPRING_APPLICATION_JSON: '{
+        "spring.neo4j.uri" : "bolt://db:7687",
+        "spring.neo4j.authentication.username" : "neo4j",
+        "spring.neo4j.authentication.password" : "patryk0504",
+        "spring.neo4j.security.encrypted" : false
+        }'  
+    networks: # Networks to join (Services on the same network can communicate with each other using their name)
+      - backend
+      - frontend
+
+  # # Frontend Service 
+  app-client:
+    build:
+      context: restaurant_recommendations_front-main # Use an image built from the specified dockerfile in the `polling-app-client` directory.
+      dockerfile: Dockerfile
+      args:
+        REACT_APP_API_BASE_URL: http://127.0.0.1:8080/api
+    image: patryk0504/app-client:latest
+    ports:
+      - "3000:3000" # Forward the exposed port 80 on the container to port 80 on the host machine
+    stdin_open: true
+    restart: always
+    depends_on:
+      - app-server
+    networks:
+      - frontend  
+
+  # Database Service (neo4j)
+  db:
+    build:
+      context: neo4j
+      dockerfile: Dockerfile
+    image: patryk0504/db:latest
+    ports:
+      - "7474:7474"
+      - "7687:7687"
+    environment:
+      NEO4J_AUTH : neo4j/patryk0504
+      dbms_connector_bolt_listen__address: neo4j-db:7687
+      dbms_connector_bolt_advertised__address: neo4j-db:7687
+      # NEO4J_dbms_read__only : true
+    healthcheck:
+      test: cypher-shell --username neo4j --password patryk0504 'MATCH (n) RETURN COUNT(n);' # Checks if neo4j server is up and running
+      interval: 10s
+      timeout: 5s
+      retries: 10
+    networks:
+      - backend
+  
+# Networks to be created to facilitate communication between containers
+networks:
+  backend:
+  frontend:    
