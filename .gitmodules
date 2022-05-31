@@ -1,0 +1,3 @@
+[submodule "ZTI"]
+	path = ZTI
+	url = https://github.com/patryk0504/restaurant_recommendations_JAVA_API.git
