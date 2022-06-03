@@ -1,7 +1,7 @@
 import React from "react";
 
 import {Container, Typography, Grid, TextField, Button} from '@mui/material';
-import SearchBar from "../../searchbar/SearchBar";
+import SearchBar from "../../../searchbar/SearchBar";
 import SelectLocation from "./SelectLocation";
 
 export default function RestaurantDetails({step, setStep, name, setName, locationId, setLocationId, address, setAddress}) {

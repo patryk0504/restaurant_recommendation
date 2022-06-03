@@ -1,4 +1,4 @@
-import {Container, Nav, Navbar} from "react-bootstrap";
+import {Container, Nav, Navbar, NavDropdown} from "react-bootstrap";
 import {Link} from "react-router-dom";
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -17,9 +17,23 @@ export default function TopNavbar(props) {
                                 <Navbar.Brand as={Link} to={"/restaurants"}>Polish Restaurants</Navbar.Brand>
                                 <Nav.Link as={Link} to={"/profile"}>{props.currentUser.username}</Nav.Link>
                                 <Nav.Link as={Link} to={"/restaurants"}>All Restaurants</Nav.Link>
-                                <Nav.Link as={Link} to={"/restaurant/recommendation/users"}>Quick Recommendations</Nav.Link>
+                                <Nav.Link as={Link} to={"/restaurant/recommendation/users"}>Quick
+                                    Recommendations</Nav.Link>
                                 <Nav.Link as={Link} to={"/users"}>Users</Nav.Link>
-                                <Nav.Link as={Link} to={"/restaurant/add"}>Add Restaurant</Nav.Link>
+                                {props.showAdminPage &&
+                                <NavDropdown title="Admin Options" id="navbarScrollingDropdown">
+                                    <NavDropdown.Item as={Link} to={"/restaurant/add"}>
+                                        Add Restaurant
+                                    </NavDropdown.Item>
+                                    <NavDropdown.Item as={Link} to={"/restaurant/remove"}>
+                                        Remove Restaurant
+                                    </NavDropdown.Item>
+                                    <NavDropdown.Divider/>
+                                    <NavDropdown.Item as={Link} to={"/administration/users"}>
+                                        Users and Roles
+                                    </NavDropdown.Item>
+                                </NavDropdown>
+                                }
                                 <Nav.Link as={Link} to={"/login"} onClick={(e) => {
                                     EventBus.dispatch("logout");
                                 }}>LogOut</Nav.Link>
@@ -33,11 +47,6 @@ export default function TopNavbar(props) {
                         )}
                     </Nav>
                 </Navbar.Collapse>
-                {/*<Navbar.Collapse className="justify-content-end">*/}
-                {/*<Navbar.Text>*/}
-                {/*    REST API host: <div className="text-light bg-dark">{process.env.REACT_APP_API_URL}</div>*/}
-                {/*</Navbar.Text>*/}
-                {/*</Navbar.Collapse>*/}
             </Container>
         </Navbar>
     )

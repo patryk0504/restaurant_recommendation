@@ -4,31 +4,6 @@ import RestaurantService from "../services/restaurant.service";
 import EventBus from "../components/auth/EventBus";
 
 
-export const addRestaurant = createAsyncThunk(
-    "restaurant/add",
-    async ({data}, thunkAPI) => {
-        try {
-            const response = await RestaurantService.addRestaurant(data);
-            thunkAPI.dispatch(setMessage("Successfully added restaurant!"));
-            return response;
-        } catch (error) {
-            const message =
-                (error.response &&
-                    error.response.data &&
-                    error.response.data.message) ||
-                error.message ||
-                error.toString();
-            thunkAPI.dispatch(setMessage(message));
-            if (error.response && (error.response.status === 403 || error.response.status === 401 || error.response.status === 422 || error.response.status === 403)) {
-                EventBus.dispatch("logout");
-            }
-            return thunkAPI.rejectWithValue();
-        }
-    }
-);
-
-
-
 export const getRestaurantsByLocations = createAsyncThunk(
     "restaurant/locations/list",
     async ({locationId}, thunkAPI) => {

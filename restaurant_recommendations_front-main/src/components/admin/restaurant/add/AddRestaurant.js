@@ -3,11 +3,11 @@ import RestaurantDetails from "./RestaurantDetails";
 import LocationDetails from "./LocationDetails";
 import RestaurantProperties from "./RestaurantProperties";
 import Success from "./Success";
-import {setComment} from "../../../slices/user";
+import {setComment} from "../../../../slices/user";
 import {useDispatch} from "react-redux";
-import {addRestaurant} from "../../../slices/restaurant";
 import CircularProgress from "@mui/material/CircularProgress";
 import SaveRestaurant from "./SaveRestaurant";
+import {addRestaurant} from "../../../../slices/administration";
 
 export default function AddRestaurant() {
     const [step, setStep] = useState(1);

@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from "react";
 import {useDispatch} from "react-redux";
-import {addRestaurant} from "../../../slices/restaurant";
 import CircularProgress from "@mui/material/CircularProgress";
 import Success from "./Success";
+import {addRestaurant} from "../../../../slices/administration";
 
 export default function SaveRestaurant(props) {
     const [loading, setLoading] = useState(false);

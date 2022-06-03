@@ -53,22 +53,10 @@ const getRestaurantRecommendationByUsers = () => {
         })
 }
 
-const addRestaurant = (data) => {
-    return axios
-        .post(API_URL + "restaurant",
-            {data},
-            {headers: authHeader()},
-        )
-        .then((response) => {
-            return response.data;
-        })
-}
-
 export default {
     getRestaurantsByLocations,
     getRestaurantById,
     getRestaurantRecommendationInCity,
     getRestaurantRecommendationAllCountry,
-    getRestaurantRecommendationByUsers,
-    addRestaurant
+    getRestaurantRecommendationByUsers
 };

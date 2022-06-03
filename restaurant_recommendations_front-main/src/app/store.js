@@ -4,6 +4,7 @@ import messageReducer from "../slices/message";
 import restaurantReducer from "../slices/restaurant";
 import propertiesReducer from "../slices/properties";
 import userReducer from "../slices/user";
+import administrationReducer from "../slices/administration";
 
 const reducer = {
   auth: authReducer,
@@ -11,8 +12,7 @@ const reducer = {
   restaurant: restaurantReducer,
   properties: propertiesReducer,
   user: userReducer,
-  // histogram: histogramReducer,
-  // stats: statsReducer
+  administration : administrationReducer
 }
 export const store = configureStore({
   reducer: reducer,

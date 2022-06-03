@@ -38,7 +38,7 @@ export default function Dashboard(props) {
                             }}
                             style={{borderRadius: "10px"}}
                             alt="The house from the offer."
-                            src={restaurant_image}
+                            // src={restaurant_image}
                         />
                     </Grid>
                 </Grid>

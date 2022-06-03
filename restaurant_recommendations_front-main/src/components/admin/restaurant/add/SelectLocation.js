@@ -4,11 +4,11 @@ import InputLabel from "@mui/material/InputLabel";
 import FormControl from "@mui/material/FormControl";
 import React, {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {getLocations} from "../../../slices/properties";
+import {getLocations} from "../../../../slices/properties";
 import TextField from "@mui/material/TextField";
 import Autocomplete, {createFilterOptions} from "@mui/material/Autocomplete";
-import {StyledAutocomplete} from "../../searchbar/SearchBar.module";
-import {getRestaurantsByLocations} from "../../../slices/restaurant";
+import {StyledAutocomplete} from "../../../searchbar/SearchBar.module";
+import {getRestaurantsByLocations} from "../../../../slices/restaurant";
 
 export default function SelectLocation({location, setLocation}){
     const locations = useSelector(state => state.properties.locations);
