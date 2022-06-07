@@ -1,4 +1,4 @@
-#Projekt ZTI - Zaawansowane techniki internetowe
+## Projekt ZTI - Zaawansowane techniki internetowe
 
 Celem projektu było stworzenie serwera aplikacyjnego w technologii Java Spring 
 wraz z warstwą dostępu do danych w postaci Spring Data JPA oraz interfejsu użytkownika będącego stroną internetową typu SPA. 
