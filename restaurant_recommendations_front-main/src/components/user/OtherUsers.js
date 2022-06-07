@@ -37,11 +37,11 @@ export default function OtherUsers(param) {
             {loading ? <Box sx={{width: '100%'}}><LinearProgress/>Searching users...</Box> :  (
                 <Row className="justify-content-md-center gap-md-5" key={counter}>
                     <h3 className="mt-5">Similar Users</h3>
-                    {similarUsers.map((res) => {
+                    {similarUsers.map((res, i) => {
                         counter += 1;
                         if (counter % 2 === 0) {
                             return (<>
-                                <div className="w-100" key={res.username + counter}></div>
+                                <div className="w-100" key={res.username + counter}/>
                                 <Col md={4}>
                                     <UserInfo
                                         key={res.similarUser}

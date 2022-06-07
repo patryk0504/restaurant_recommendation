@@ -4,6 +4,10 @@ import AuthService from "../services/auth.service";
 
 const user = JSON.parse(localStorage.getItem("user"));
 
+export const logout = createAsyncThunk("auth/logout", async () => {
+    await AuthService.logout();
+});
+
 export const register = createAsyncThunk(
     "auth/register",
     async ({username, password}, thunkAPI) => {
@@ -42,10 +46,6 @@ export const login = createAsyncThunk(
         }
     }
 );
-
-export const logout = createAsyncThunk("auth/logout", async () => {
-    await AuthService.logout();
-});
 
 
 const initialState = user

@@ -31,8 +31,8 @@ export default function UserInfo(props) {
                     Similar Restaurants:
                 </Typography>
                 <ul>
-                    {props.restaurantNames.map((res) => {
-                        return <li>{res}</li>
+                    {props.restaurantNames.map((res, i) => {
+                        return <li key={i}>{res}</li>
                     })}
                 </ul>
             </CardContent>

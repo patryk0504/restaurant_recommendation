@@ -18,7 +18,7 @@ export default function UserCardList() {
     return <>
         <Grid container spacing={1}>
             {users && users.map((user, i) => {
-                return <Grid item xs>
+                return <Grid key={i} item xs>
                     <UserCard username={user.username} roles={user.roles} id={user.id}/>
                 </Grid>
             })}
