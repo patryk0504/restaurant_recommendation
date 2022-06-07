@@ -8,4 +8,4 @@ RUN chmod +x mgt-entrypoint.sh
 
 ENV NEO4J_AUTH=neo4j/patryk0504
 ENV NEO4J_dbms_security_auth__enabled=false
-ENTRYPOINT ["./mgt-entrypoint.sh"]
+ENTRYPOINT ["sh", "./mgt-entrypoint.sh"]

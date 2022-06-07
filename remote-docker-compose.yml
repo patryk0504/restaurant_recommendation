@@ -7,9 +7,9 @@ services:
   # App backend service
   app-server:
     # Configuration for building the docker image for the backend service
-    build:
-      context: ZTI # Use an image built from the specified dockerfile in the `polling-app-server` directory.
-      dockerfile: Dockerfile
+    # build:
+      # context: ZTI # Use an image built from the specified dockerfile in the `polling-app-server` directory.
+      # dockerfile: Dockerfile
     image: patryk0504/app-server:latest
     ports:
       - "7777:7777" # Forward the exposed port 8080 on the container to port 8080 on the host machine
@@ -33,11 +33,11 @@ services:
 
   # # Frontend Service 
   app-client:
-    build:
-      context: restaurant_recommendations_front-main # Use an image built from the specified dockerfile in the `polling-app-client` directory.
-      dockerfile: Dockerfile
-      args:
-        REACT_APP_API_BASE_URL: http://127.0.0.1:7777/api
+    # build:
+      # context: restaurant_recommendations_front-main # Use an image built from the specified dockerfile in the `polling-app-client` directory.
+      # dockerfile: Dockerfile
+      # args:
+        # REACT_APP_API_BASE_URL: http://127.0.0.1:8080/api
     image: patryk0504/app-client:latest
     ports:
       - "3000:3000" # Forward the exposed port 80 on the container to port 80 on the host machine
@@ -50,9 +50,9 @@ services:
 
   # Database Service (neo4j)
   db:
-    build:
-      context: neo4j
-      dockerfile: Dockerfile
+    # build:
+      # context: neo4j
+      # dockerfile: Dockerfile
     image: patryk0504/db:latest
     ports:
       - "7474:7474"
